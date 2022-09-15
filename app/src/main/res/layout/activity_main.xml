@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textViewCalcScreen"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@color/light_grey"
