@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SecondCalculator</string>\
-    <string name="calculator_text">1234567890</string>
     <string name="_7">7</string>
     <string name="_8">8</string>
     <string name="_9">9</string>
@@ -14,6 +13,7 @@
     <string name="_3">3</string>
     <string name="Subtract">-</string>
     <string name="_0">0</string>
+    <string name="Decimal">.</string>
     <string name="Clear">CLR</string>
     <string name="plus">+</string>
     <string name="equals">=</string>
