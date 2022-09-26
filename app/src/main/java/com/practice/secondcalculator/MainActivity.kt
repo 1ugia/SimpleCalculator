@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import java.lang.ArithmeticException
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +50,25 @@ class MainActivity : AppCompatActivity() {
                 textViewCalcScreen?.append((view as Button).text)
                 lastNumeric = false
                 lastDot = false
+            }
+        }
+    }
+
+    fun onEqual(view: View){
+        if(lastNumeric){
+            var calcScreenValue = textViewCalcScreen?.text.toString()
+
+            try{
+                val calcScreenValue = calcScreenValue.split("-")
+
+                var splitValueOne = calcScreenValue[0]
+                var splitValueTwo = calcScreenValue[1]
+
+                textViewCalcScreen?.text = (
+                        splitValueOne.toDouble() - splitValueTwo.toDouble()
+                        ).toString()
+            }catch (e: ArithmeticException){
+                e.printStackTrace()
             }
         }
     }
