@@ -42,4 +42,25 @@ class MainActivity : AppCompatActivity() {
             lastDot = true // "flag" or a check point to say where/when the changes are made
         }
     }
+
+    fun onOperator(view: View){
+        textViewCalcScreen?.text?.let {
+            if (lastNumeric && !isOperatorAdded(it.toString())){
+                textViewCalcScreen?.append((view as Button).text)
+                lastNumeric = false
+                lastDot = false
+            }
+        }
+    }
+
+    private fun isOperatorAdded(value : String) : Boolean {
+        return if(value.startsWith("-")){
+            false
+        }else{
+            value.contains("/")
+                    || value.contains("*")
+                    || value.contains("+")
+                    || value.contains("-")
+        }
+    }
 }
