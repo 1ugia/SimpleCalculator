@@ -58,15 +58,27 @@ class MainActivity : AppCompatActivity() {
         if(lastNumeric){
             var calcScreenValue = textViewCalcScreen?.text.toString()
 
+            var prefix = ""
             try{
-                val calcScreenValue = calcScreenValue.split("-")
+                if(calcScreenValue.startsWith("-")){
+                    prefix = "-"
+                    calcScreenValue = calcScreenValue.substring(1)
+                }
+                if (calcScreenValue.contains("-")){
 
-                var splitValueOne = calcScreenValue[0]
-                var splitValueTwo = calcScreenValue[1]
+                    val calcScreenValue = calcScreenValue.split("-")
 
-                textViewCalcScreen?.text = (
-                        splitValueOne.toDouble() - splitValueTwo.toDouble()
-                        ).toString()
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = (
+                            splitValueOne.toDouble() - splitValueTwo.toDouble()
+                            ).toString()
+                }
             }catch (e: ArithmeticException){
                 e.printStackTrace()
             }
