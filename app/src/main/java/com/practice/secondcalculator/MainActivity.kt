@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
                     prefix = "-"
                     calcScreenValue = calcScreenValue.substring(1)
                 }
+
+                // for minus calculations
                 if (calcScreenValue.contains("-")){
 
                     val calcScreenValue = calcScreenValue.split("-")
@@ -79,6 +81,61 @@ class MainActivity : AppCompatActivity() {
                             splitValueOne.toDouble() - splitValueTwo.toDouble()
                             ).toString()
                 }
+
+                // for plus calculations
+
+                else if (calcScreenValue.contains("+")){
+
+                    val calcScreenValue = calcScreenValue.split("+")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = (
+                            splitValueOne.toDouble() + splitValueTwo.toDouble()
+                            ).toString()
+                }
+
+                // for division calculations
+                else if (calcScreenValue.contains("/")){
+
+                    val calcScreenValue = calcScreenValue.split("/")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = (
+                            splitValueOne.toDouble() / splitValueTwo.toDouble()
+                            ).toString()
+                }
+
+                // for multiplication calculations
+                else if (calcScreenValue.contains("*")){
+
+                    val calcScreenValue = calcScreenValue.split("*")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = (
+                            splitValueOne.toDouble() * splitValueTwo.toDouble()
+                            ).toString()
+                }
+
+
+
             }catch (e: ArithmeticException){
                 e.printStackTrace()
             }
