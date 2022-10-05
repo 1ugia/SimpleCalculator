@@ -77,9 +77,9 @@ class MainActivity : AppCompatActivity() {
                         splitValueOne = prefix + splitValueOne
                     }
 
-                    textViewCalcScreen?.text = (
-                            splitValueOne.toDouble() - splitValueTwo.toDouble()
-                            ).toString()
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() - splitValueTwo.toDouble()).toString()
+                    )
                 }
 
                 // for plus calculations
@@ -95,9 +95,9 @@ class MainActivity : AppCompatActivity() {
                         splitValueOne = prefix + splitValueOne
                     }
 
-                    textViewCalcScreen?.text = (
-                            splitValueOne.toDouble() + splitValueTwo.toDouble()
-                            ).toString()
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() + splitValueTwo.toDouble()).toString()
+                    )
                 }
 
                 // for division calculations
@@ -112,9 +112,9 @@ class MainActivity : AppCompatActivity() {
                         splitValueOne = prefix + splitValueOne
                     }
 
-                    textViewCalcScreen?.text = (
-                            splitValueOne.toDouble() / splitValueTwo.toDouble()
-                            ).toString()
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() / splitValueTwo.toDouble()).toString()
+                    )
                 }
 
                 // for multiplication calculations
@@ -129,9 +129,9 @@ class MainActivity : AppCompatActivity() {
                         splitValueOne = prefix + splitValueOne
                     }
 
-                    textViewCalcScreen?.text = (
-                            splitValueOne.toDouble() * splitValueTwo.toDouble()
-                            ).toString()
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() * splitValueTwo.toDouble()).toString()
+                    )
                 }
 
 
@@ -140,6 +140,20 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun removeZeroAfterDot(result : String) :String {
+        var value = result
+        if (result.contains("0"))
+            value = result.substring(0, result.length -2 )
+        /*
+          value = result.substring
+        re-setting value with new string
+
+          (0, result.length -2 )
+        starting at the index 0, take way 2 from the end of the length of the result
+        */
+        return value
     }
 
     private fun isOperatorAdded(value : String) : Boolean {
