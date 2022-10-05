@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import java.lang.ArithmeticException
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +52,108 @@ class MainActivity : AppCompatActivity() {
                 lastDot = false
             }
         }
+    }
+
+    fun onEqual(view: View){
+        if(lastNumeric){
+            var calcScreenValue = textViewCalcScreen?.text.toString()
+
+            var prefix = ""
+            try{
+                if(calcScreenValue.startsWith("-")){
+                    prefix = "-"
+                    calcScreenValue = calcScreenValue.substring(1)
+                }
+
+                // for minus calculations
+                if (calcScreenValue.contains("-")){
+
+                    val calcScreenValue = calcScreenValue.split("-")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() - splitValueTwo.toDouble()).toString()
+                    )
+                }
+
+                // for plus calculations
+
+                else if (calcScreenValue.contains("+")){
+
+                    val calcScreenValue = calcScreenValue.split("+")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() + splitValueTwo.toDouble()).toString()
+                    )
+                }
+
+                // for division calculations
+                else if (calcScreenValue.contains("/")){
+
+                    val calcScreenValue = calcScreenValue.split("/")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() / splitValueTwo.toDouble()).toString()
+                    )
+                }
+
+                // for multiplication calculations
+                else if (calcScreenValue.contains("*")){
+
+                    val calcScreenValue = calcScreenValue.split("*")
+
+                    var splitValueOne = calcScreenValue[0]
+                    var splitValueTwo = calcScreenValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        splitValueOne = prefix + splitValueOne
+                    }
+
+                    textViewCalcScreen?.text = removeZeroAfterDot(
+                        (splitValueOne.toDouble() * splitValueTwo.toDouble()).toString()
+                    )
+                }
+
+
+
+            }catch (e: ArithmeticException){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun removeZeroAfterDot(result : String) :String {
+        var value = result
+        if (result.contains("0"))
+            value = result.substring(0, result.length -2 )
+        /*
+          value = result.substring
+        re-setting value with new string
+
+          (0, result.length -2 )
+        starting at the index 0, take way 2 from the end of the length of the result
+        */
+        return value
     }
 
     private fun isOperatorAdded(value : String) : Boolean {
